@@ -3,265 +3,468 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Informasi Pendaftaran Rawat Jalan Klinik</title>
+    <title>Klinik Sehat Sentosa - Pelayanan Kesehatan Terpercaya</title>
+    <meta name="description" content="Klinik Sehat Sentosa menyediakan layanan kesehatan umum, gigi, anak, dan laboratorium dengan dokter berpengalaman.">
+    
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Gaya Dasar */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary: #007bff;
+            --secondary: #28a745;
+            --dark: #343a40;
+            --light: #f8f9fa;
+        }
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
             color: #333;
         }
-        .header {
-            background-color: #007bff;
+        a { text-decoration: none; }
+        img { max-width: 100%; }
+
+        /* Header & Navbar */
+        header {
+            background: var(--dark);
             color: white;
-            padding: 15px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .topbar {
+            background: #222;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .topbar .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .navbar {
+            padding: 15px 0;
+        }
+        .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
         }
-        .nav a {
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-menu a {
             color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
+            font-weight: 500;
+            transition: 0.3s;
         }
-        .container {
-            padding: 30px;
-            max-width: 1200px;
-            margin: 20px auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        .nav-menu a:hover {
+            color: var(--primary);
         }
-        h2 {
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            color: #007bff;
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
         }
 
-        /* Gaya Formulir */
-        .form-group {
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1551601651-bc49f4a9df3e?q=80&w=2070') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+        }
+        .btn-success {
+            background: var(--secondary);
+        }
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        /* Section umum */
+        section {
+            padding: 80px 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: var(--dark);
+        }
+
+        /* Layanan */
+        .services {
+            background: #f9f9f9;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        .service-card i {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* Tentang */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .about img {
+            border-radius: 10px;
+            flex: 1;
+            min-width: 300px;
+        }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Dokter */
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .doctor-card {
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .doctor-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .doctor-info {
+            padding: 20px;
+        }
+
+        /* Kontak & Form */
+        .contact {
+            background: var(--dark);
+            color: white;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .contact-info ul {
+            list-style: none;
+        }
+        .contact-info li {
             margin-bottom: 15px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
-        .form-group label {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        input[type="text"],
-        input[type="date"],
-        input[type="tel"],
-        select,
-        textarea {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        form input, form textarea, form select {
             width: 100%;
-            box-sizing: border-box;
-        }
-        .form-row {
-            display: flex;
-            gap: 20px;
-        }
-        .form-row > .form-group {
-            flex: 1;
-        }
-        
-        /* Gaya Tabel */
-        .table-container {
-            margin-top: 30px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        table th, table td {
-            border: 1px solid #ddd;
             padding: 12px;
-            text-align: left;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
         }
-        table th {
-            background-color: #007bff;
-            color: white;
-        }
-        table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        
-        /* Gaya Tombol */
-        button {
-            padding: 10px 20px;
-            background-color: #28a745;
+        form button {
+            padding: 12px 30px;
+            background: var(--secondary);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 10px;
-            transition: background-color 0.3s;
         }
-        button:hover {
-            background-color: #1e7e34;
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 20px;
+                display: none;
+            }
+            .nav-menu.active { display: flex; }
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 18px; }
+            .contact-grid { grid-template-columns: 1fr; }
         }
     </style>
+    <!-- Font Awesome untuk ikon -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<div class="header">
-    <h1>🏥 Sistem Pendaftaran Rawat Jalan</h1>
-    <div class="nav">
-        <a href="#pendaftaran">Pendaftaran Baru</a>
-        <a href="#daftar-antrian">Daftar Antrian</a>
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="container">
+            <div>📞 Hotline: 0812-3456-7890</div>
+            <div>🕒 Buka Senin–Sabtu 08.00–21.00 | Minggu 09.00–14.00</div>
+        </div>
     </div>
-</div>
 
-<div class="container">
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="container">
+                <div class="logo">Klinik Sehat Sentosa</div>
+                <nav>
+                    <div class="hamburger" onclick="toggleMenu()">☰</div>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#layanan">Layanan</a></li>
+                        <li><a href="#tentang">Tentang</a></li>
+                        <li><a href="#dokter">Dokter</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-    <section id="pendaftaran">
-        <h2>📝 Formulir Pendaftaran Pasien Baru/Lama</h2>
-        <form action="/submit_pendaftaran" method="POST">
-            
-            <div class="form-row">
-                <div style="flex: 1;">
-                    <h3>Data Pasien</h3>
-                    <div class="form-group">
-                        <label for="no_rm">Nomor Rekam Medis (RM) (Jika Ada):</label>
-                        <input type="text" id="no_rm" name="no_rm" placeholder="Cth: 123456">
-                    </div>
-                    <div class="form-group">
-                        <label for="nama_lengkap">Nama Lengkap Pasien: *</label>
-                        <input type="text" id="nama_lengkap" name="nama_lengkap" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="tanggal_lahir">Tanggal Lahir: *</label>
-                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="jenis_kelamin">Jenis Kelamin: *</label>
-                            <select id="jenis_kelamin" name="jenis_kelamin" required>
-                                <option value="">-- Pilih --</option>
-                                <option value="L">Laki-laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">Alamat Lengkap: *</label>
-                        <textarea id="alamat" name="alamat" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="no_telp">Nomor Telepon/HP: *</label>
-                        <input type="tel" id="no_telp" name="no_telp" placeholder="Cth: 081234567890" required>
+    <!-- Hero -->
+    <section class="hero" id="beranda">
+        <div class="container">
+            <h1>Selamat Datang di Klinik Sehat Sentosa</h1>
+            <p>Klinik kesehatan terlengkap dengan dokter berpengalaman dan fasilitas modern untuk seluruh keluarga Anda.</p>
+            <a href="#kontak" class="btn">Daftar Online Sekarang</a>
+            <a href="tel:081234567890" class="btn btn-success" style="margin-left:15px;">Hubungi via WA</a>
+        </div>
+    </section>
+
+    <!-- Layanan -->
+    <section class="services" id="layanan">
+        <div class="container">
+            <h2>Layanan Kami</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-stethoscope"></i>
+                    <h3>Poli Umum</h3>
+                    <p>Pemeriksaan dan pengobatan penyakit umum oleh dokter berpengalaman.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tooth"></i>
+                    <h3>Poli Gigi</h3>
+                    <p>Tambal, cabut, behel, scaling, dan perawatan gigi lainnya.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-baby"></i>
+                    <h3>Poli Anak</h3>
+                    <p>Imunisasi, pertumbuhan, dan kesehatan anak usia 0-12 tahun.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-female"></i>
+                    <h3>Poli Kandungan</h3>
+                    <p>USG kehamilan, konsultasi KB, dan pemeriksaan kandungan.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-vial"></i>
+                    <h3>Laboratorium</h3>
+                    <p>Cek darah, urine, kolesterol, gula darah, dan lainnya.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-prescription-bottle-alt"></i>
+                    <h3>Apotek 24 Jam</h3>
+                    <p>Obat lengkap dan resep dokter dengan harga terjangkau.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section id="tentang">
+        <div class="container">
+            <h2>Tentang Klinik Sehat Sentosa</h2>
+            <div class="about">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070" alt="Interior Klinik">
+                <div class="about-text">
+                    <p>Klinik Sehat Sentosa didirikan pada tahun 2015 dengan visi menjadi pusat kesehatan keluarga yang terpercaya di kota kami.</p>
+                    <p>Kami memiliki tim dokter spesialis dan umum yang berpengalaman, didukung peralatan medis modern serta ruang tunggu yang nyaman.</p>
+                    <p>Setiap pasien adalah keluarga bagi kami. Kepuasan dan kesehatan Anda adalah prioritas utama kami.</p>
+                    <br>
+                    <a href="#kontak" class="btn">Buat Janji Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dokter -->
+    <section class="services" id="dokter">
+        <div class="container">
+            <h2>Tim Dokter Kami</h2>
+            <div class="doctors-grid">
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1000" alt="Dr. Ahmad">
+                    <div class="doctor-info">
+                        <h3>dr. Ahmad Santoso, Sp.PD</h3>
+                        <p>Dokter Spesialis Penyakit Dalam</p>
                     </div>
                 </div>
-
-                <div style="flex: 1;">
-                    <h3>Data Kunjungan</h3>
-                    <div class="form-group">
-                        <label for="tanggal_kunjungan">Tanggal Kunjungan: *</label>
-                        <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1000" alt="Dr. Siti">
+                    <div class="doctor-info">
+                        <h3>drg. Siti Nurhaliza</h3>
+                        <p>Dokter Gigi Umum & Estetika</p>
                     </div>
-                    <div class="form-group">
-                        <label for="poliklinik">Poli/Klinik Tujuan: *</label>
-                        <select id="poliklinik" name="poliklinik" required>
-                            <option value="">-- Pilih Poliklinik --</option>
-                            <option value="umum">Poli Umum</option>
-                            <option value="gigi">Poli Gigi</option>
-                            <option value="anak">Poli Anak & Imunisasi</option>
-                            <option value="penyakit_dalam">Poli Penyakit Dalam</option>
-                            <option value="kia">Poli KIA & Kebidanan</option>
-                            <option value="fisioterapi">Fisioterapi</option>
-                        </select>
+                </div>
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c0f?q=80&w=1000" alt="Dr. Budi">
+                    <div class="doctor-info">
+                        <h3>dr. Budi Pratama, Sp.A</h3>
+                        <p>Dokter Spesialis Anak</p>
                     </div>
-                    <div class="form-group">
-                        <label for="dokter">Dokter yang Dituju (Opsional):</label>
-                        <select id="dokter" name="dokter">
-                            <option value="">-- Pilih Dokter --</option>
-                            <option value="dr_a">dr. Ahmad</option>
-                            <option value="dr_b">dr. Budi (Poli Gigi)</option>
-                            <option value="dr_c">dr. Citra (Poli Anak)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="metode_pembayaran">Metode Pembayaran: *</label>
-                        <select id="metode_pembayaran" name="metode_pembayaran" required>
-                            <option value="">-- Pilih Metode --</option>
-                            <option value="umum">Umum (Tunai/Debit)</option>
-                            <option value="bpjs">BPJS Kesehatan</option>
-                            <option value="asuransi_lain">Asuransi Swasta</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="keluhan_singkat">Keluhan Singkat:</label>
-                        <textarea id="keluhan_singkat" name="keluhan_singkat" rows="2" placeholder="Cth: Batuk pilek 3 hari, demam."></textarea>
+                </div>
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=1000" alt="Dr. Rina">
+                    <div class="doctor-info">
+                        <h3>dr. Rina Wulandari, Sp.OG</h3>
+                        <p>Dokter Spesialis Kandungan</p>
                     </div>
                 </div>
             </div>
-            
-            <button type="submit">✅ Ajukan Pendaftaran</button>
-            
-        </form>
+        </div>
     </section>
-    
-    <hr>
-    
-    <section id="daftar-antrian" class="table-container">
-        <h2>📋 Daftar Antrian Rawat Jalan Hari Ini</h2>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>No. Antrian</th>
-                    <th>Nama Pasien</th>
-                    <th>Poli Tujuan</th>
-                    <th>Dokter</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>A-001</td>
-                    <td>Santi Dewi</td>
-                    <td>Poli Umum</td>
-                    <td>dr. Ahmad</td>
-                    <td>**Menunggu**</td>
-                </tr>
-                <tr>
-                    <td>C-002</td>
-                    <td>Bambang Wijaya</td>
-                    <td>Poli Anak</td>
-                    <td>dr. Citra</td>
-                    <td>**Dipanggil**</td>
-                </tr>
-                <tr>
-                    <td>B-003</td>
-                    <td>Rina Kusuma</td>
-                    <td>Poli Gigi</td>
-                    <td>dr. Budi</td>
-                    <td>Selesai</td>
-                </tr>
-                <tr>
-                    <td>A-004</td>
-                    <td>Joko Santoso</td>
-                    <td>Poli Umum</td>
-                    <td>dr. Ahmad</td>
-                    <td>Menunggu</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    
-</div>
 
+    <!-- Kontak & Form Pendaftaran -->
+    <section class="contact" id="kontak">
+        <div class="container">
+            <h2 style="color:white;">Hubungi Kami & Daftar Online</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Jl. Raya Sehat No. 123, Kel. Sentosa, Kec. Harapan Baru, Kota Sejahtera</li>
+                        <li><i class="fas fa-phone"></i> (021) 555-1234</li>
+                        <li><i class="fas fa-mobile-alt"></i> 0812-3456-7890 (WA)</li>
+                        <li><i class="fas fa-envelope"></i> info@kliniksehatsentosa.com</li>
+                        <li><i class="fas fa-clock"></i> Senin–Sabtu: 08.00–21.00 | Minggu: 09.00–14.00</li>
+                    </ul>
+                    <br>
+                    <iframe src="https://www.google.com/maps/embed?pb=YOUR_MAP_LINK" width="100%" height="300" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div>
+                    <h3 style="margin-bottom:20px;">Form Pendaftaran Online</h3>
+                    <form action="#" method="POST">
+                        <input type="text" placeholder="Nama Lengkap" required>
+                        <input type="tel" placeholder="No. Handphone / WA" required>
+                        <select required>
+                            <option value="">Pilih Poli</option>
+                            <option>Poli Umum</option>
+                            <option>Poli Gigi</option>
+                            <option>Poli Anak</option>
+                            <option>Poli Kandungan</option>
+                            <option>Laboratorium</option>
+                        </select>
+                        <input type="date" required>
+                        <textarea rows="4" placeholder="Keluhan (opsional)"></textarea>
+                        <button type="submit">Kirim & Buat Janji</button>
+                    </form>
+                    <p style="margin-top:15px; font-size:14px;">Kami akan menghubungi Anda dalam 1×24 jam untuk konfirmasi jadwal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Klinik Sehat Sentosa. Semua hak cipta dilindungi.</p>
+            <p>Dibuat dengan ❤️ untuk kesehatan masyarakat</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("active");
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
