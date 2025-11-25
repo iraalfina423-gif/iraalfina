@@ -3,132 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pendaftaran Rawat Jalan</title>
+    <title>Sistem Informasi Pendaftaran Rawat Jalan Klinik</title>
     <style>
+        /* Gaya Dasar */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
         }
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
             padding: 30px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            text-align: center;
-            color: #333;
+        h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
             margin-bottom: 20px;
+            color: #007bff;
         }
+
+        /* Gaya Formulir */
         .form-group {
             margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
         }
-        label {
-            display: block;
+        .form-group label {
+            font-weight: 600;
             margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
         }
         input[type="text"],
         input[type="date"],
         input[type="tel"],
         select,
         textarea {
-            width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box; /* Penting agar padding tidak melebarkan input */
-        }
-        button {
-            display: block;
             width: 100%;
-            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        .form-row > .form-group {
+            flex: 1;
+        }
+        
+        /* Gaya Tabel */
+        .table-container {
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        table th {
             background-color: #007bff;
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        /* Gaya Tombol */
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #1e7e34;
         }
     </style>
 </head>
 <body>
 
+<div class="header">
+    <h1>🏥 Sistem Pendaftaran Rawat Jalan</h1>
+    <div class="nav">
+        <a href="#pendaftaran">Pendaftaran Baru</a>
+        <a href="#daftar-antrian">Daftar Antrian</a>
+    </div>
+</div>
+
 <div class="container">
-    <h1>🏥 Formulir Pendaftaran Rawat Jalan</h1>
-    <form action="/submit_pendaftaran" method="POST">
-        
-        <fieldset>
-            <legend>Data Diri Pasien</legend>
-            
-            <div class="form-group">
-                <label for="nama_lengkap">Nama Lengkap:</label>
-                <input type="text" id="nama_lengkap" name="nama_lengkap" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="tanggal_lahir">Tanggal Lahir:</label>
-                <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="alamat">Alamat Lengkap:</label>
-                <textarea id="alamat" name="alamat" rows="3" required></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="no_telp">Nomor Telepon/HP:</label>
-                <input type="tel" id="no_telp" name="no_telp" pattern="[0-9]{10,14}" title="Masukkan nomor telepon yang valid (10-14 digit)" required>
-            </div>
 
-            <div class="form-group">
-                <label for="metode_pembayaran">Metode Pembayaran:</label>
-                <select id="metode_pembayaran" name="metode_pembayaran" required>
-                    <option value="">-- Pilih Metode --</option>
-                    <option value="umum">Umum / Pribadi</option>
-                    <option value="bpjs">BPJS Kesehatan</option>
-                    <option value="asuransi_lain">Asuransi Lain</option>
-                </select>
-            </div>
-        </fieldset>
-        
-        <fieldset>
-            <legend>Jadwal dan Tujuan</legend>
+    <section id="pendaftaran">
+        <h2>📝 Formulir Pendaftaran Pasien Baru/Lama</h2>
+        <form action="/submit_pendaftaran" method="POST">
+            
+            <div class="form-row">
+                <div style="flex: 1;">
+                    <h3>Data Pasien</h3>
+                    <div class="form-group">
+                        <label for="no_rm">Nomor Rekam Medis (RM) (Jika Ada):</label>
+                        <input type="text" id="no_rm" name="no_rm" placeholder="Cth: 123456">
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_lengkap">Nama Lengkap Pasien: *</label>
+                        <input type="text" id="nama_lengkap" name="nama_lengkap" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tanggal_lahir">Tanggal Lahir: *</label>
+                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jenis_kelamin">Jenis Kelamin: *</label>
+                            <select id="jenis_kelamin" name="jenis_kelamin" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="L">Laki-laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat Lengkap: *</label>
+                        <textarea id="alamat" name="alamat" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_telp">Nomor Telepon/HP: *</label>
+                        <input type="tel" id="no_telp" name="no_telp" placeholder="Cth: 081234567890" required>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="tanggal_kunjungan">Tanggal Kunjungan yang Diinginkan:</label>
-                <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+                <div style="flex: 1;">
+                    <h3>Data Kunjungan</h3>
+                    <div class="form-group">
+                        <label for="tanggal_kunjungan">Tanggal Kunjungan: *</label>
+                        <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="poliklinik">Poli/Klinik Tujuan: *</label>
+                        <select id="poliklinik" name="poliklinik" required>
+                            <option value="">-- Pilih Poliklinik --</option>
+                            <option value="umum">Poli Umum</option>
+                            <option value="gigi">Poli Gigi</option>
+                            <option value="anak">Poli Anak & Imunisasi</option>
+                            <option value="penyakit_dalam">Poli Penyakit Dalam</option>
+                            <option value="kia">Poli KIA & Kebidanan</option>
+                            <option value="fisioterapi">Fisioterapi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dokter">Dokter yang Dituju (Opsional):</label>
+                        <select id="dokter" name="dokter">
+                            <option value="">-- Pilih Dokter --</option>
+                            <option value="dr_a">dr. Ahmad</option>
+                            <option value="dr_b">dr. Budi (Poli Gigi)</option>
+                            <option value="dr_c">dr. Citra (Poli Anak)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="metode_pembayaran">Metode Pembayaran: *</label>
+                        <select id="metode_pembayaran" name="metode_pembayaran" required>
+                            <option value="">-- Pilih Metode --</option>
+                            <option value="umum">Umum (Tunai/Debit)</option>
+                            <option value="bpjs">BPJS Kesehatan</option>
+                            <option value="asuransi_lain">Asuransi Swasta</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="keluhan_singkat">Keluhan Singkat:</label>
+                        <textarea id="keluhan_singkat" name="keluhan_singkat" rows="2" placeholder="Cth: Batuk pilek 3 hari, demam."></textarea>
+                    </div>
+                </div>
             </div>
             
-            <div class="form-group">
-                <label for="poliklinik">Poli/Klinik Tujuan:</label>
-                <select id="poliklinik" name="poliklinik" required>
-                    <option value="">-- Pilih Poliklinik --</option>
-                    <option value="umum">Poli Umum</option>
-                    <option value="gigi">Poli Gigi</option>
-                    <option value="anak">Poli Anak</option>
-                    <option value="penyakit_dalam">Poli Penyakit Dalam</option>
-                    <option value="bedah">Poli Bedah</option>
-                </select>
-            </div>
+            <button type="submit">✅ Ajukan Pendaftaran</button>
             
-            <div class="form-group">
-                <label for="keluhan_singkat">Keluhan Singkat:</label>
-                <textarea id="keluhan_singkat" name="keluhan_singkat" rows="2"></textarea>
-            </div>
-        </fieldset>
+        </form>
+    </section>
+    
+    <hr>
+    
+    <section id="daftar-antrian" class="table-container">
+        <h2>📋 Daftar Antrian Rawat Jalan Hari Ini</h2>
         
-        <button type="submit">Daftar Sekarang</button>
-        
-    </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>No. Antrian</th>
+                    <th>Nama Pasien</th>
+                    <th>Poli Tujuan</th>
+                    <th>Dokter</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A-001</td>
+                    <td>Santi Dewi</td>
+                    <td>Poli Umum</td>
+                    <td>dr. Ahmad</td>
+                    <td>**Menunggu**</td>
+                </tr>
+                <tr>
+                    <td>C-002</td>
+                    <td>Bambang Wijaya</td>
+                    <td>Poli Anak</td>
+                    <td>dr. Citra</td>
+                    <td>**Dipanggil**</td>
+                </tr>
+                <tr>
+                    <td>B-003</td>
+                    <td>Rina Kusuma</td>
+                    <td>Poli Gigi</td>
+                    <td>dr. Budi</td>
+                    <td>Selesai</td>
+                </tr>
+                <tr>
+                    <td>A-004</td>
+                    <td>Joko Santoso</td>
+                    <td>Poli Umum</td>
+                    <td>dr. Ahmad</td>
+                    <td>Menunggu</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
 </div>
 
 </body>
