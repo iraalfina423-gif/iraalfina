@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran Rawat Jalan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Penting agar padding tidak melebarkan input */
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏥 Formulir Pendaftaran Rawat Jalan</h1>
+    <form action="/submit_pendaftaran" method="POST">
+        
+        <fieldset>
+            <legend>Data Diri Pasien</legend>
+            
+            <div class="form-group">
+                <label for="nama_lengkap">Nama Lengkap:</label>
+                <input type="text" id="nama_lengkap" name="nama_lengkap" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="tanggal_lahir">Tanggal Lahir:</label>
+                <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="alamat">Alamat Lengkap:</label>
+                <textarea id="alamat" name="alamat" rows="3" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="no_telp">Nomor Telepon/HP:</label>
+                <input type="tel" id="no_telp" name="no_telp" pattern="[0-9]{10,14}" title="Masukkan nomor telepon yang valid (10-14 digit)" required>
+            </div>
+
+            <div class="form-group">
+                <label for="metode_pembayaran">Metode Pembayaran:</label>
+                <select id="metode_pembayaran" name="metode_pembayaran" required>
+                    <option value="">-- Pilih Metode --</option>
+                    <option value="umum">Umum / Pribadi</option>
+                    <option value="bpjs">BPJS Kesehatan</option>
+                    <option value="asuransi_lain">Asuransi Lain</option>
+                </select>
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Jadwal dan Tujuan</legend>
+
+            <div class="form-group">
+                <label for="tanggal_kunjungan">Tanggal Kunjungan yang Diinginkan:</label>
+                <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="poliklinik">Poli/Klinik Tujuan:</label>
+                <select id="poliklinik" name="poliklinik" required>
+                    <option value="">-- Pilih Poliklinik --</option>
+                    <option value="umum">Poli Umum</option>
+                    <option value="gigi">Poli Gigi</option>
+                    <option value="anak">Poli Anak</option>
+                    <option value="penyakit_dalam">Poli Penyakit Dalam</option>
+                    <option value="bedah">Poli Bedah</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="keluhan_singkat">Keluhan Singkat:</label>
+                <textarea id="keluhan_singkat" name="keluhan_singkat" rows="2"></textarea>
+            </div>
+        </fieldset>
+        
+        <button type="submit">Daftar Sekarang</button>
+        
+    </form>
+</div>
+
+</body>
+</html>
