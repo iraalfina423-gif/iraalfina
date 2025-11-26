@@ -3,158 +3,203 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alur Pendaftaran Pasien Rawat Jalan</title>
+  <title>Alur Pendaftaran Online - Klinik Sehat Sentosa</title>
   <style>
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f0f5fa;
-      color: #333;
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
       margin: 0;
       padding: 20px;
+      color: #333;
     }
     .container {
-      max-width: 900px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-width: 950px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
-    h1 {
+    header {
+      background: #00bcd4;
+      color: white;
       text-align: center;
-      color: #2c6fbb;
-      margin-bottom: 40px;
+      padding: 30px 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    header p {
+      margin: 10px 0 0;
+      font-size: 16px;
+      opacity: 0.9;
     }
     .flowchart {
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 30px;
+      gap: 25px;
     }
     .step {
-      width: 280px;
-      padding: 20px;
-      background: #e3f2fd;
-      border-radius: 12px;
+      width: 320px;
+      padding: 25px;
+      background: #e0f7fa;
+      border-radius: 16px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border: 3px solid #00bcd4;
       position: relative;
+      transition: transform 0.3s;
+    }
+    .step:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,188,212,0.2);
     }
     .step-number {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      background: #2c6fbb;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      background: #ff5722;
       color: white;
       border-radius: 50%;
-      line-height: 40px;
+      line-height: 50px;
       font-weight: bold;
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-size: 24px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
     .step h3 {
-      margin: 10px 0;
-      color: #2c6fbb;
+      margin: 15px 0 10px;
+      color: #006064;
+      font-size: 20px;
+    }
+    .step p {
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+    .wa-button {
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 10px;
+      box-shadow: 0 4px 10px rgba(37,211,102,0.4);
     }
     .arrow {
-      font-size: 40px;
-      color: #2c6fbb;
+      font-size: 50px;
+      color: #00bcd4;
+      font-weight: bold;
     }
-    .note {
-      margin-top: 40px;
-      padding: 15px;
-      background: #fff3e0;
-      border-left: 5px solid #ff9800;
-      font-style: italic;
+    .footer-note {
+      background: #fff8e1;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      border-top: 1px solid #eee;
     }
     @media (max-width: 600px) {
       .step { width: 90%; }
+      header h1 { font-size: 24px; }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="container">
-  <h1>Alur Pendaftaran Pasien Rawat Jalan</h1>
+
+  <header>
+    <h1>Alur Pendaftaran Online</h1>
+    <p>Rawat Jalan Klinik Sehat Sentosa (Tanpa Antri Panjang)</p>
+  </header>
 
   <div class="flowchart">
 
     <!-- Langkah 1 -->
     <div class="step">
       <div class="step-number">1</div>
-      <h3>Datang ke Loket Pendaftaran</h3>
-      <p>Pasien (baru/lama) mendatangi loket pendaftaran di klinik.</p>
+      <h3>Klik Tombol WhatsApp</h3>
+      <p>Klik tombol di bawah ini untuk memulai pendaftaran via WhatsApp resmi klinik.</p>
+      <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20daftar%20online" 
+         class="wa-button" target="_blank">
+         📱 Daftar via WhatsApp
+      </a>
     </div>
-
     <div class="arrow">↓</div>
 
     <!-- Langkah 2 -->
     <div class="step">
       <div class="step-number">2</div>
-      <h3>Pendaftaran & Verifikasi Data</h3>
-      <p>
-        • Pasien baru: mengisi formulir & menyerahkan KTP/Foto<br>
-        • Pasien lama: menyebutkan nama/no. RM atau menunjukkan kartu pasien<br>
-        • Petugas mencetak nomor antrian & bukti pendaftaran
+      <h3>Ketik Pesan Otomatis</h3>
+      <p>Pesan sudah otomatis terisi. Anda tinggal tekan kirim.<br>
+         Contoh:<br>
+         <strong>"Halo, saya mau daftar online"</strong>
       </p>
     </div>
-
     <div class="arrow">↓</div>
 
     <!-- Langkah 3 -->
     <div class="step">
       <div class="step-number">3</div>
-      <h3>Pembayaran Administrasi (jika umum)</h3>
-      <p>Jika pasien umum/BPJS belum terdaftar di klinik, lakukan pembayaran biaya pendaftaran di kasir.</p>
+      <h3>Admin Akan Membalas Cepat</h3>
+      <p>Admin akan membalas dalam <strong>kurang dari 3 menit</strong> (jam operasional).</p>
     </div>
-
     <div class="arrow">↓</div>
 
     <!-- Langkah 4 -->
     <div class="step">
       <div class="step-number">4</div>
-      <h3>Menunggu Dipanggil ke Poli</h3>
-      <p>Pantau layar antrian atau dengarkan panggilan petugas. Nomor antrian akan dipanggil sesuai poli tujuan (Umum, Gigi, KIA, dll).</p>
+      <h3>Isi Data Singkat</h3>
+      <p>Admin akan meminta:<br>
+         • Nama lengkap<br>
+         • Tanggal lahir / No. RM (jika pasien lama)<br>
+         • Poli yang dituju (Umum/Gigi/KIA)<br>
+         • Tanggal & jam kunjungan yang diinginkan
+      </p>
     </div>
-
     <div class="arrow">↓</div>
 
     <!-- Langkah 5 -->
     <div class="step">
       <div class="step-number">5</div>
-      <h3>Periksa ke Dokter di Ruang Poli</h3>
-      <p>Dokter melakukan pemeriksaan, menentukan diagnosa, dan memberikan resep/obat atau tindakan lain.</p>
+      <h3>Terima Bukti Pendaftaran</h3>
+      <p>Anda akan menerima:<br>
+         • Nomor antrian<br>
+         • Estimasi jam dipanggil<br>
+         • Kode booking (simpan bukti chat)
+      </p>
     </div>
-
     <div class="arrow">↓</div>
 
     <!-- Langkah 6 -->
     <div class="step">
       <div class="step-number">6</div>
-      <h3>Penanganan Resep / Tindakan</h3>
-      <p>
-        • Jika ada resep → ke Apotek klinik<br>
-        • Jika ada tindakan (injeksi, nebulizer, dll) → ke ruang tindakan<br>
-        • Jika ada rujukan/lab → ikuti petunjuk dokter
-      </p>
+      <h3>Datang 15 Menit Sebelum Jadwal</h3>
+      <p>Tunjukkan bukti chat WhatsApp ke petugas loket → langsung dipanggil sesuai nomor antrian online.</p>
     </div>
-
     <div class="arrow">↓</div>
 
     <!-- Langkah 7 -->
     <div class="step">
       <div class="step-number">7</div>
-      <h3>Selesai & Pulang</h3>
-      <p>Ambil obat (jika ada), simpan bukti kontrol jika perlu kontrol ulang, dan pasien diperbolehkan pulang.</p>
+      <h3>Selesai & Periksa ke Dokter</h3>
+      <p>Tanpa antri lama, langsung diperiksa dokter sesuai jadwal.</p>
     </div>
 
   </div>
 
-  <div class="note">
-    <strong>Catatan:</strong><br>
-    • Pasien BPJS wajib membawa kartu BPJS yang aktif dan surat rujukan (jika dari faskes 1).<br>
-    • Untuk pasien baru, harap datang lebih awal agar proses pendaftaran tidak terburu-buru.<br>
-    • Pendaftaran online (jika tersedia) dapat dilakukan melalui WhatsApp resmi klinik atau aplikasi yang ditentukan.
+  <div class="footer-note">
+    <strong>Informasi Penting:</strong><br>
+    • Pendaftaran online dibuka H-7 sampai H+1<br>
+    • Jam operasional pendaftaran online: Senin–Sabtu, 07:00–20:00 WIB<br>
+    • Pasien BPJS tetap harus membawa kartu & rujukan aktif<br>
+    • Jika tidak bisa via WhatsApp, hubungi <strong>021-1234567</strong>
   </div>
 </div>
 
