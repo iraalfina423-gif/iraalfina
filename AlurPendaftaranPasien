@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alur Pendaftaran Pasien Rawat Jalan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f5fa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c6fbb;
+      margin-bottom: 40px;
+    }
+    .flowchart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .step {
+      width: 280px;
+      padding: 20px;
+      background: #e3f2fd;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .step-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: #2c6fbb;
+      color: white;
+      border-radius: 50%;
+      line-height: 40px;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .step h3 {
+      margin: 10px 0;
+      color: #2c6fbb;
+    }
+    .arrow {
+      font-size: 40px;
+      color: #2c6fbb;
+    }
+    .note {
+      margin-top: 40px;
+      padding: 15px;
+      background: #fff3e0;
+      border-left: 5px solid #ff9800;
+      font-style: italic;
+    }
+    @media (max-width: 600px) {
+      .step { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Alur Pendaftaran Pasien Rawat Jalan</h1>
+
+  <div class="flowchart">
+
+    <!-- Langkah 1 -->
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Datang ke Loket Pendaftaran</h3>
+      <p>Pasien (baru/lama) mendatangi loket pendaftaran di klinik.</p>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <!-- Langkah 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Pendaftaran & Verifikasi Data</h3>
+      <p>
+        • Pasien baru: mengisi formulir & menyerahkan KTP/Foto<br>
+        • Pasien lama: menyebutkan nama/no. RM atau menunjukkan kartu pasien<br>
+        • Petugas mencetak nomor antrian & bukti pendaftaran
+      </p>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <!-- Langkah 3 -->
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Pembayaran Administrasi (jika umum)</h3>
+      <p>Jika pasien umum/BPJS belum terdaftar di klinik, lakukan pembayaran biaya pendaftaran di kasir.</p>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <!-- Langkah 4 -->
+    <div class="step">
+      <div class="step-number">4</div>
+      <h3>Menunggu Dipanggil ke Poli</h3>
+      <p>Pantau layar antrian atau dengarkan panggilan petugas. Nomor antrian akan dipanggil sesuai poli tujuan (Umum, Gigi, KIA, dll).</p>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <!-- Langkah 5 -->
+    <div class="step">
+      <div class="step-number">5</div>
+      <h3>Periksa ke Dokter di Ruang Poli</h3>
+      <p>Dokter melakukan pemeriksaan, menentukan diagnosa, dan memberikan resep/obat atau tindakan lain.</p>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <!-- Langkah 6 -->
+    <div class="step">
+      <div class="step-number">6</div>
+      <h3>Penanganan Resep / Tindakan</h3>
+      <p>
+        • Jika ada resep → ke Apotek klinik<br>
+        • Jika ada tindakan (injeksi, nebulizer, dll) → ke ruang tindakan<br>
+        • Jika ada rujukan/lab → ikuti petunjuk dokter
+      </p>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <!-- Langkah 7 -->
+    <div class="step">
+      <div class="step-number">7</div>
+      <h3>Selesai & Pulang</h3>
+      <p>Ambil obat (jika ada), simpan bukti kontrol jika perlu kontrol ulang, dan pasien diperbolehkan pulang.</p>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <strong>Catatan:</strong><br>
+    • Pasien BPJS wajib membawa kartu BPJS yang aktif dan surat rujukan (jika dari faskes 1).<br>
+    • Untuk pasien baru, harap datang lebih awal agar proses pendaftaran tidak terburu-buru.<br>
+    • Pendaftaran online (jika tersedia) dapat dilakukan melalui WhatsApp resmi klinik atau aplikasi yang ditentukan.
+  </div>
+</div>
+
+</body>
+</html>
