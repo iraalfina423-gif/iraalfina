@@ -3,205 +3,281 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alur Pendaftaran Online - Klinik Sehat Sentosa</title>
+  <title>Pendaftaran Online Rawat Jalan - Klinik Sehat Sentosa</title>
+  <meta name="description" content="Daftar online rawat jalan tanpa antri panjang di Klinik Sehat Sentosa. Cepat, mudah, dan langsung dapat nomor antrian.">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
+    :root {
+      --primary: #00bcd4;
+      --secondary: #ff5722;
+      --dark: #006064;
+      --light: #e0f7fa;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
-      margin: 0;
-      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
       color: #333;
-    }
-    .container {
-      max-width: 950px;
-      margin: 20px auto;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    header {
-      background: #00bcd4;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    header p {
-      margin: 10px 0 0;
-      font-size: 16px;
-      opacity: 0.9;
-    }
-    .flowchart {
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-    }
-    .step {
-      width: 320px;
-      padding: 25px;
-      background: #e0f7fa;
-      border-radius: 16px;
-      text-align: center;
-      border: 3px solid #00bcd4;
-      position: relative;
-      transition: transform 0.3s;
-    }
-    .step:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 20px rgba(0,188,212,0.2);
-    }
-    .step-number {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 50px;
-      background: #ff5722;
-      color: white;
-      border-radius: 50%;
-      line-height: 50px;
-      font-weight: bold;
-      font-size: 24px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    .step h3 {
-      margin: 15px 0 10px;
-      color: #006064;
-      font-size: 20px;
-    }
-    .step p {
-      margin: 8px 0;
       line-height: 1.6;
     }
-    .wa-button {
-      display: inline-block;
-      background: #25d366;
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      background: var(--primary);
       color: white;
-      padding: 12px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 10px;
-      box-shadow: 0 4px 10px rgba(37,211,102,0.4);
+      text-align: center;
+      padding: 60px 20px;
+      border-bottom: 6px solid var(--secondary);
     }
-    .arrow {
-      font-size: 50px;
-      color: #00bcd4;
-      font-weight: bold;
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
     }
-    .footer-note {
+    header p {
+      font-size: 18px;
+      opacity: 0.95;
+    }
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin: 50px 0;
+      justify-content: center;
+    }
+    .flowchart, .form-section {
+      flex: 1;
+      min-width: 320px;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .section-title {
+      font-size: 26px;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Flowchart */
+    .step {
+      background: var(--light);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 12px;
+      border-left: 5px solid var(--primary);
+      position: relative;
+      transition: all 0.3s;
+    }
+    .step:hover { transform: translateX(10px); }
+    .step-num {
+      position: absolute;
+      left: -15px;
+      top: 15px;
+      background: var(--secondary);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .step h3 { margin-left: 40px; color: var(--dark); }
+
+    /* Form */
+    form {
+      display: grid;
+      gap: 18px;
+    }
+    label {
+      font-weight: 600;
+      color: var(--dark);
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0,188,212,0.2);
+    }
+    .btn-submit {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-submit:hover {
+      background: #0097a7;
+      transform: translateY(-3px);
+    }
+    .note {
       background: #fff8e1;
       padding: 20px;
-      text-align: center;
+      border-radius: 10px;
+      margin-top: 30px;
       font-size: 14px;
-      border-top: 1px solid #eee;
+      border-left: 5px solid #ff9800;
     }
-    @media (max-width: 600px) {
-      .step { width: 90%; }
-      header h1 { font-size: 24px; }
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: var(--dark);
+      color: white;
+      margin-top: 50px;
+    }
+    @media (max-width: 768px) {
+      header h1 { font-size: 28px; }
+      .main-content { flex-direction: column; }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="container">
-
   <header>
-    <h1>Alur Pendaftaran Online</h1>
-    <p>Rawat Jalan Klinik Sehat Sentosa (Tanpa Antri Panjang)</p>
+    <div class="container">
+      <h1>Pendaftaran Online Rawat Jalan</h1>
+      <p>Klinik Sehat Sentosa – Daftar dari rumah, datang langsung diperiksa!</p>
+    </div>
   </header>
 
-  <div class="flowchart">
+  <div class="container">
+    <div class="main-content">
 
-    <!-- Langkah 1 -->
-    <div class="step">
-      <div class="step-number">1</div>
-      <h3>Klik Tombol WhatsApp</h3>
-      <p>Klik tombol di bawah ini untuk memulai pendaftaran via WhatsApp resmi klinik.</p>
-      <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20daftar%20online" 
-         class="wa-button" target="_blank">
-         📱 Daftar via WhatsApp
-      </a>
+      <!-- Alur Pendaftaran -->
+      <div class="flowchart">
+        <h2 class="section-title">Alur Pendaftaran Online</h2>
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Isi Form di Halaman Ini</h3>
+          <p>Lengkapi data diri & pilih jadwal kunjungan.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Klik "Daftar Sekarang"</h3>
+          <p>Data langsung masuk ke sistem klinik.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Terima Konfirmasi via WhatsApp/SMS</h3>
+          <p>Dalam 5–10 menit Anda dapat nomor antrian + estimasi jam.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Datang 15 Menit Sebelum Jadwal</h3>
+          <p>Tunjukkan bukti pendaftaran di loket → langsung ke poli.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <h3>Selesai & Diperiksa Dokter</h3>
+          <p>Tanpa antri lama!</p>
+        </div>
+      </div>
+
+      <!-- Form Pendaftaran -->
+      <div class="form-section">
+        <h2 class="section-title">Form Pendaftaran Online</h2>
+
+        <form action="https://formspree.io/f/xanywjla" method="POST"> <!-- Ganti dengan Formspree / webhook Anda -->
+          
+          <label>Nama Lengkap *</label>
+          <input type="text" name="nama" required placeholder="Masukkan nama lengkap">
+
+          <label>No. KTP / NIK *</label>
+          <input type="text" name="nik" required placeholder="16 digit NIK">
+
+          <label>No. HP WhatsApp *</label>
+          <input type="tel" name="no_hp" required placeholder="08xxxxxxxxxx">
+
+          <label>Tanggal Lahir *</label>
+          <input type="date" name="tgl_lahir" required>
+
+          <label>Pasien Baru atau Lama? *</label>
+          <select name="status_pasien" required>
+            <option value="">Pilih</option>
+            <option value="baru">Pasien Baru</option>
+            <option value="lama">Pasien Lama (ada No. RM)</option>
+          </select>
+
+          <label>No. Rekam Medis (jika pasien lama)</label>
+          <input type="text" name="no_rm" placeholder="Kosongkan jika pasien baru">
+
+          <label>Poli Tujuan *</label>
+          <select name="poli" required>
+            <option value="">Pilih Poli</option>
+            <option value="umum">Poli Umum</option>
+            <option value="gigi">Poli Gigi & Mulut</option>
+            <option value="kia">Poli KIA / Kandungan</option>
+            <option value="anak">Poli Anak</option>
+            <option value="lainnya">Lainnya</option>
+          </select>
+
+          <label>Tanggal Kunjungan *</label>
+          <input type="date" name="tgl_kunjungan" required min="2025-11-27">
+
+          <label>Jam Kunjungan yang Diinginkan</label>
+          <select name="jam">
+            <option value="pagi">Pagi (08:00 – 12:00)</option>
+            <option value="siang">Siang (13:00 – 16:00)</option>
+            <option value="sore">Sore (17:00 – 20:00)</option>
+          </select>
+
+          <label>Keluhan Singkat</label>
+          <textarea name="keluhan" rows="3" placeholder="Contoh: batuk pilek 3 hari, demam, dll"></textarea>
+
+          <button type="submit" class="btn-submit">DAFTAR SEKARANG</button>
+        </form>
+
+        <div class="note">
+          <strong>Catatan:</strong><br>
+          • Pendaftaran online gratis<br>
+          • Kuota terbatas setiap hari<br>
+          • Konfirmasi akan dikirim maksimal 1×24 jam<br>
+          • BPJS tetap wajib bawa kartu & rujukan aktif
+        </div>
+      </div>
+
     </div>
-    <div class="arrow">↓</div>
-
-    <!-- Langkah 2 -->
-    <div class="step">
-      <div class="step-number">2</div>
-      <h3>Ketik Pesan Otomatis</h3>
-      <p>Pesan sudah otomatis terisi. Anda tinggal tekan kirim.<br>
-         Contoh:<br>
-         <strong>"Halo, saya mau daftar online"</strong>
-      </p>
-    </div>
-    <div class="arrow">↓</div>
-
-    <!-- Langkah 3 -->
-    <div class="step">
-      <div class="step-number">3</div>
-      <h3>Admin Akan Membalas Cepat</h3>
-      <p>Admin akan membalas dalam <strong>kurang dari 3 menit</strong> (jam operasional).</p>
-    </div>
-    <div class="arrow">↓</div>
-
-    <!-- Langkah 4 -->
-    <div class="step">
-      <div class="step-number">4</div>
-      <h3>Isi Data Singkat</h3>
-      <p>Admin akan meminta:<br>
-         • Nama lengkap<br>
-         • Tanggal lahir / No. RM (jika pasien lama)<br>
-         • Poli yang dituju (Umum/Gigi/KIA)<br>
-         • Tanggal & jam kunjungan yang diinginkan
-      </p>
-    </div>
-    <div class="arrow">↓</div>
-
-    <!-- Langkah 5 -->
-    <div class="step">
-      <div class="step-number">5</div>
-      <h3>Terima Bukti Pendaftaran</h3>
-      <p>Anda akan menerima:<br>
-         • Nomor antrian<br>
-         • Estimasi jam dipanggil<br>
-         • Kode booking (simpan bukti chat)
-      </p>
-    </div>
-    <div class="arrow">↓</div>
-
-    <!-- Langkah 6 -->
-    <div class="step">
-      <div class="step-number">6</div>
-      <h3>Datang 15 Menit Sebelum Jadwal</h3>
-      <p>Tunjukkan bukti chat WhatsApp ke petugas loket → langsung dipanggil sesuai nomor antrian online.</p>
-    </div>
-    <div class="arrow">↓</div>
-
-    <!-- Langkah 7 -->
-    <div class="step">
-      <div class="step-number">7</div>
-      <h3>Selesai & Periksa ke Dokter</h3>
-      <p>Tanpa antri lama, langsung diperiksa dokter sesuai jadwal.</p>
-    </div>
-
   </div>
 
-  <div class="footer-note">
-    <strong>Informasi Penting:</strong><br>
-    • Pendaftaran online dibuka H-7 sampai H+1<br>
-    • Jam operasional pendaftaran online: Senin–Sabtu, 07:00–20:00 WIB<br>
-    • Pasien BPJS tetap harus membawa kartu & rujukan aktif<br>
-    • Jika tidak bisa via WhatsApp, hubungi <strong>021-1234567</strong>
-  </div>
-</div>
+  <footer>
+    <p>© 2025 Klinik Sehat Sentosa | Jl. Contoh No. 123, Jakarta | WA: 6281-2345-6789</p>
+  </footer>
 
 </body>
 </html>
