@@ -41,46 +41,48 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <!-- Tombol JKN dengan ID khusus agar bisa dikontrol JavaScript -->
-<a href="jknaid://" id="btn-jkn" class="jkn-float">
-  <span style="font-size: 14px; font-weight: bold;">JKN</span>
-</a>
+<!-- Tombol Navigasi JKN -->
+<button onclick="openJKN()" style="
+    padding: 12px 24px; 
+    background-color: #008641; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    cursor: pointer;
+    font-family: Arial, sans-serif;">
+    Buka di Mobile JKN
+</button>
 
 <script>
-document.getElementById('btn-jkn').addEventListener('click', function(e) {
-    // Mencegah browser melakukan tindakan default yang membingungkan
+function openJKN() {
+    // URL Scheme untuk aplikasi Mobile JKN
+    const deepLink = "jknaid://"; 
+    // Link cadangan jika aplikasi tidak terinstal
+    const playStore = "https://play.google.com/store/apps/details?id=app.bpjs.mobile";
+    const appStore = "https://apps.apple.com/id/app/mobile-jkn/id1237601115";
+
     const start = Date.now();
-    
-    // Memberi instruksi ke browser untuk membuka aplikasi
+
+    // Mencoba membuka aplikasi
+    window.location.href = deepLink;
+
+    // Jika dalam 2 detik aplikasi tidak terbuka, arahkan ke Store
     setTimeout(function() {
-        // Jika setelah 2 detik tidak ada tanda-tanda aplikasi terbuka (halaman tidak pindah)
-        // Maka kita arahkan ke Play Store sebagai cadangan agar tidak BLANK
         if (Date.now() - start < 2500) {
-            window.location.href = "https://play.google.com/store/apps/details?id=app.bpjs.mobile";
+            // Cek apakah user menggunakan iOS atau Android
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) {
+                window.location.href = playStore;
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = appStore;
+            } else {
+                window.location.href = playStore; // Default ke Play Store
+            }
         }
     }, 2000);
-});
+}
 </script>
-
-<style>
-  .jkn-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 110px; /* Di atas posisi tombol WA */
-    right: 20px;
-    background-color: #008641;
-    color: white;
-    border-radius: 50px;
-    text-align: center;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    z-index: 1000;
-  }
-</style>
   
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
