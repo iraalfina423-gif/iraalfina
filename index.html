@@ -41,60 +41,11 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-<!-- Tombol Navigasi JKN -->
-<button onclick="openJKN()" style="
-    padding: 12px 24px; 
-    background-color: #008641; 
-    color: white; 
-    border: none; 
-    border-radius: 8px; 
-    font-weight: bold; 
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 10px;">
-    <img src="https://www.bpjs-kesehatan.go.id/bpjs/favicon.ico" width="20" style="border-radius: 2px;">
-    Buka Beranda Mobile JKN
-</button>
-
-<script>
-function openJKN() {
-    // 1. Mencoba menggunakan Intent Android (Paling Ampuh untuk Android terbaru)
-    // Format ini memaksa HP membuka aplikasi BPJS jika terinstal
-    const androidIntent = "intent://#Intent;scheme=jknaid;package=app.bpjs.mobile;end";
-    
-    // 2. URL Scheme standar (untuk iOS atau versi lama)
-    const deepLink = "jknaid://"; 
-    
-    // 3. Link Toko Aplikasi
-    const playStore = "https://play.google.com/store/apps/details?id=app.bpjs.mobile";
-    const appStore = "https://apps.apple.com/id/app/mobile-jkn/id1237601115";
-
-    const start = Date.now();
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-    // EKSEKUSI
-    if (/android/i.test(userAgent)) {
-        // Jika Android, gunakan cara Intent agar tidak 'blank'
-        window.location.href = androidIntent;
-    } else {
-        // Jika iOS atau lainnya, gunakan scheme standar
-        window.location.href = deepLink;
-    }
-
-    // FALLBACK: Jika aplikasi tidak terbuka dalam 2.5 detik, lempar ke Store
-    setTimeout(function() {
-        if (Date.now() - start < 3000) {
-            if (/iPad|iPhone|iPod/.test(userAgent)) {
-                window.location.href = appStore;
-            } else {
-                window.location.href = playStore;
-            }
-        }
-    }, 2500);
-}
-</script>
+<!-- Gunakan link biasa, ini paling disukai browser Chrome -->
+<a href="jknaid://home" 
+   style="display: inline-block; padding: 15px 25px; background-color: #008641; color: white; text-decoration: none; border-radius: 10px; font-weight: bold; text-align: center;">
+   KLIK UNTUK BUKA MOBILE JKN
+</a>
   
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
