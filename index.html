@@ -50,37 +50,49 @@
     border-radius: 8px; 
     font-weight: bold; 
     cursor: pointer;
-    font-family: Arial, sans-serif;">
-    Buka di Mobile JKN
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;">
+    <img src="https://www.bpjs-kesehatan.go.id/bpjs/favicon.ico" width="20" style="border-radius: 2px;">
+    Buka Beranda Mobile JKN
 </button>
 
 <script>
 function openJKN() {
-    // URL Scheme untuk aplikasi Mobile JKN
+    // 1. Mencoba menggunakan Intent Android (Paling Ampuh untuk Android terbaru)
+    // Format ini memaksa HP membuka aplikasi BPJS jika terinstal
+    const androidIntent = "intent://#Intent;scheme=jknaid;package=app.bpjs.mobile;end";
+    
+    // 2. URL Scheme standar (untuk iOS atau versi lama)
     const deepLink = "jknaid://"; 
-    // Link cadangan jika aplikasi tidak terinstal
+    
+    // 3. Link Toko Aplikasi
     const playStore = "https://play.google.com/store/apps/details?id=app.bpjs.mobile";
     const appStore = "https://apps.apple.com/id/app/mobile-jkn/id1237601115";
 
     const start = Date.now();
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    // Mencoba membuka aplikasi
-    window.location.href = deepLink;
+    // EKSEKUSI
+    if (/android/i.test(userAgent)) {
+        // Jika Android, gunakan cara Intent agar tidak 'blank'
+        window.location.href = androidIntent;
+    } else {
+        // Jika iOS atau lainnya, gunakan scheme standar
+        window.location.href = deepLink;
+    }
 
-    // Jika dalam 2 detik aplikasi tidak terbuka, arahkan ke Store
+    // FALLBACK: Jika aplikasi tidak terbuka dalam 2.5 detik, lempar ke Store
     setTimeout(function() {
-        if (Date.now() - start < 2500) {
-            // Cek apakah user menggunakan iOS atau Android
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            if (/android/i.test(userAgent)) {
-                window.location.href = playStore;
-            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        if (Date.now() - start < 3000) {
+            if (/iPad|iPhone|iPod/.test(userAgent)) {
                 window.location.href = appStore;
             } else {
-                window.location.href = playStore; // Default ke Play Store
+                window.location.href = playStore;
             }
         }
-    }, 2000);
+    }, 2500);
 }
 </script>
   
