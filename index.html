@@ -40,38 +40,61 @@
      class="wa-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
+  
+<!-- Container untuk Tombol Melayang -->
+<div class="floating-container">
+    
+    <!-- Tombol Mobile JKN -->
+    <a href="jknaid://" class="float-btn jkn-color" target="_blank">
+        <span class="label-text">JKN</span>
+    </a>
 
-<!-- Floating Mobile JKN -->
-<a href="jknaid://" class="jkn-float" target="_blank">
-  <!-- Menggunakan ikon rumah sebagai simbol Beranda -->
-  <span style="font-size: 24px; font-weight: bold;">JKN</span>
-</a>
+    <!-- Tombol WhatsApp (Seperti contohmu) -->
+    <a href="https://wa.me/628155071077?text=Halo%20Klinik%20Asy-Syifa%20Husada%2C%20saya%20mau%20daftar%20rawat%20jalan" 
+       class="float-btn wa-color" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span style="font-size: 24px;">WA</span>
+    </a>
+
+</div>
 
 <style>
-  /* Desain tombol agar melayang di pojok kanan bawah */
-  .jkn-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 100px; /* Jarak dari bawah (di atas tombol WA jika ada) */
-    right: 40px;
-    background-color: #008641; /* Warna hijau khas BPJS */
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    box-shadow: 2px 2px 3px #999;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
+    /* Mengatur posisi container di pojok kanan bawah */
+    .floating-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Jarak antar tombol */
+        z-index: 9999;
+    }
 
-  .jkn-float:hover {
-    background-color: #006b34;
-    transform: scale(1.1);
-  }
+    /* Desain umum tombol */
+    .float-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        transition: transform 0.2s;
+    }
+
+    .float-btn:hover {
+        transform: scale(1.1);
+    }
+
+    /* Warna khusus masing-masing */
+    .jkn-color { background-color: #008641; } /* Hijau BPJS */
+    .wa-color { background-color: #25D366; }  /* Hijau WA */
+
+    .label-text { font-size: 14px; }
 </style>
   
   <!-- Navbar -->
