@@ -235,23 +235,23 @@ Medis Ringan</p>
           Start[Pasien Datang ke Klinik] --> CekStatus{Pasien Baru/Lama?}
           
           %% Percabangan Status Pasien
-          CekStatus -->|Baru| Baru[Registrasi: KTP/KK/SIM]
-          CekStatus -->|Lama| Lama[Tunjukkan Kartu Berobat]
+          CekStatus -->|Baru| Baru[Menunjukkan Kartu Identitas KTP/KK/SIM untuk registrasi]
+          CekStatus -->|Lama| Lama[Menunjukkan Kartu Berobat atau Kartu Identitas]
           
           Baru --> CekBayar{BPJS/Umum?}
           Lama --> CekBayar
           
           %% Percabangan Jenis Pembayaran
-          CekBayar -->|BPJS| BPJS[Cek Kepesertaan BPJS]
-          CekBayar -->|Umum| Umum[Bayar Administrasi]
+          CekBayar -->|BPJS| BPJS[Cek Kepesertaan BPJS dan status aktif/non-aktif]
+          CekBayar -->|Umum| Umum[Melakukan Pembayaran biaya pendaftaran administrasi]
           
-          BPJS --> Antri[Nomor Antrean & Pilih Poli]
+          BPJS --> Antri[Pemilihan Poli Tujuan & Dapat Nomor Antrean]
           Umum --> Antri
           
           %% Alur Pelayanan Poli
-          Antri --> Tunggu[Ruang Tunggu]
-          Tunggu --> Poli[Dipanggil ke Poli]
-          Poli --> Dokter[Pemeriksaan Dokter]
+          Antri --> Tunggu[Menunggu di Ruang Tunggu]
+          Tunggu --> Poli[Dipanggil ke Poli yang dituju]
+          Poli --> Dokter[Pemeriksaan Dokter di Poli]
           
           %% --- BAGIAN BARU: KEPUTUSAN MEDIS ---
           Dokter --> Keputusan{Keputusan Medis}
@@ -265,19 +265,19 @@ Medis Ringan</p>
           Rujuk --> Selesai
 
           %% Lanjutan Rawat Jalan
-          CekKontrol -->|Ya| Kontrol[Jadwal Kontrol]
-          CekKontrol -->|Tidak| Edukasi[Edukasi Selesai]
+          CekKontrol -->|Ya| Kontrol[Penjadwalan Kontrol Kembali]
+          CekKontrol -->|Tidak| Edukasi[Edukasi Selesai Berobat]
           
-          Kontrol --> ResepCheck{Ada Resep?}
+          Kontrol --> ResepCheck{Ada Resep/Tindakan?}
           Edukasi --> ResepCheck
           
           %% Alur Farmasi dan Kasir
-          ResepCheck -->|Ya| Farmasi[Farmasi: Ambil Obat]
+          ResepCheck -->|Ya| Farmasi[Farmasi: Pengambilan Obat]
           ResepCheck -->|Tidak| FinalCheck{Pasien Umum?}
           
           Farmasi --> FinalCheck
           
-          FinalCheck -->|Ya| Kasir[Kasir: Pelunasan]
+          FinalCheck -->|Ya| Kasir[Kasir: Pelunasan Biaya Tindakan&Obat]
           FinalCheck -->|Tidak| Selesai[Pasien Pulang]
           
           Kasir --> Selesai
