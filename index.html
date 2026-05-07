@@ -227,7 +227,7 @@ Medis Ringan</p>
     <!-- Flowchart Alur Pendaftaran -->
     <section id="alur" class="my-5">
       <h2 class="text-center mb-5 text-primary fw-bold">Alur Pendaftaran Pasien Rawat Jalan</h2>
-    <section>
+  <section>
   <div class="flowchart">
     <div class="mermaid">
       flowchart TD
@@ -235,39 +235,49 @@ Medis Ringan</p>
           Start[Pasien Datang ke Klinik] --> CekStatus{Pasien Baru/Lama?}
           
           %% Percabangan Status Pasien
-          CekStatus -->|Baru| Baru[Menunjukkan Kartu Identitas KTP/KK/SIM untuk registrasi]
-          CekStatus -->|Lama| Lama[Menunjukkan Kartu Berobat atau Kartu Identitas]
+          CekStatus -->|Baru| Baru[Registrasi: KTP/KK/SIM]
+          CekStatus -->|Lama| Lama[Tunjukkan Kartu Berobat]
           
           Baru --> CekBayar{BPJS/Umum?}
           Lama --> CekBayar
           
           %% Percabangan Jenis Pembayaran
-          CekBayar -->|BPJS| BPJS[Cek Kepesertaan BPJS dan status aktif/non-aktif]
-          CekBayar -->|Umum| Umum[Melakukan Pembayaran biaya pendaftaran administrasi]
+          CekBayar -->|BPJS| BPJS[Cek Kepesertaan BPJS]
+          CekBayar -->|Umum| Umum[Bayar Administrasi]
           
-          BPJS --> Antri[Pemilihan Poli Tujuan & Dapat Nomor Antrean]
+          BPJS --> Antri[Nomor Antrean & Pilih Poli]
           Umum --> Antri
           
           %% Alur Pelayanan Poli
-          Antri --> Tunggu[Menunggu di Ruang Tunggu]
-          Tunggu --> Poli[Dipanggil ke Poli yang Dituju]
-          Poli --> Dokter[Pemeriksaan Dokter di Poli]
+          Antri --> Tunggu[Ruang Tunggu]
+          Tunggu --> Poli[Dipanggil ke Poli]
+          Poli --> Dokter[Pemeriksaan Dokter]
           
-          %% Percabangan Kontrol
-          Dokter --> CekKontrol{Perlu Kontrol?}
-          CekKontrol -->|Ya| Kontrol[Penjadwalan Kontrol Kembali]
-          CekKontrol -->|Tidak| SelesaiBerobat[Edukasi Selesai Berobat]
+          %% --- BAGIAN BARU: KEPUTUSAN MEDIS ---
+          Dokter --> Keputusan{Keputusan Medis}
           
-          Kontrol --> ResepCheck{Ada Resep/Tindakan?}
-          SelesaiBerobat --> ResepCheck
+          Keputusan -->|Rawat Inap| Inap[Proses Rawat Inap]
+          Keputusan -->|Rujuk| Rujuk[Buat Surat Rujukan RS]
+          Keputusan -->|Rawat Jalan| CekKontrol{Perlu Kontrol?}
+
+          %% Jalur Keluar untuk Inap & Rujuk
+          Inap --> Kasir
+          Rujuk --> Selesai
+
+          %% Lanjutan Rawat Jalan
+          CekKontrol -->|Ya| Kontrol[Jadwal Kontrol]
+          CekKontrol -->|Tidak| Edukasi[Edukasi Selesai]
+          
+          Kontrol --> ResepCheck{Ada Resep?}
+          Edukasi --> ResepCheck
           
           %% Alur Farmasi dan Kasir
-          ResepCheck -->|Ya| Farmasi[Farmasi: Pengambilan Obat]
+          ResepCheck -->|Ya| Farmasi[Farmasi: Ambil Obat]
           ResepCheck -->|Tidak| FinalCheck{Pasien Umum?}
           
           Farmasi --> FinalCheck
           
-          FinalCheck -->|Ya| Kasir[Kasir: Pelunasan Biaya Tindakan & Obat]
+          FinalCheck -->|Ya| Kasir[Kasir: Pelunasan]
           FinalCheck -->|Tidak| Selesai[Pasien Pulang]
           
           Kasir --> Selesai
@@ -281,18 +291,21 @@ Medis Ringan</p>
           style Baru fill:#f0f4ff,stroke:#3b82f6
           style Lama fill:#f0f4ff,stroke:#3b82f6
           style Kontrol fill:#d1fae5,stroke:#059669
+          style Inap fill:#3b82f6,stroke:#fff,color:#fff
+          style Rujuk fill:#6366f1,stroke:#fff,color:#fff
+          style Keputusan fill:#f8fafc,stroke:#333,stroke-width:2px
     </div>
   </div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true, theme:'default'});</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true});</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true});</script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default',
+    flowchart: { useMaxWidth: true, htmlLabels: true }
+  });
+</script>
 
     <!-- Lokasi & Kontak -->
     <section id="lokasi" class="my-5 bg-light p-5 rounded shadow">
